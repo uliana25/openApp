@@ -16,9 +16,11 @@ v-app(dark)
     v-btn(icon, @click.stop='inset = !inset')
       v-icon remove
     v-toolbar-title(v-text='title')
-      v-spacer
-        v-btn(icon, @click.stop='rightDrawer = !rightDrawer')
-          v-icon menu
+    v-spacer
+    LocaleSwitcher
+    v-spacer
+    v-btn(icon, @click.stop='rightDrawer = !rightDrawer')
+      v-icon menu
   v-content
     v-container
       nuxt
@@ -41,7 +43,11 @@ interface menuItem {
   to: string;
 }
 
-@Component({})
+@Component({
+  components: {
+    LocaleSwitcher: () => import('~/components/LocaleSwitcher.vue')
+  }
+})
 export default class DefaultLayout extends Vue {
   clipped: Boolean = false
   drawer: Boolean = false
